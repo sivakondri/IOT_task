@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 80%;
+            margin-top: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .device-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+        }
+        .add-device {
+            font-size: 24px;
+            color: white;
+            background-color: #1a8f4e;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .add-device:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>IoT Dashboard</h1>
+            <a href="{{url_for('add_device')}}" class="add-device">+</a>
+        </div>
+
+        <h2>Active Devices</h2>
+        <div>
+            {% for device in devices %}
+                <div class="device-card">
+                    <h3>{{ device['name'] }}</h3>
+                    <p>Status: {{ device['status'] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+     <!-- Placeholder for chatbot widget -->
+    <div id="bp-web-widget"></div>
+
+    <!-- Botpress Web Chat Script -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    
+    <!--  Custom Bot Configuration File -->
+    <script src="https://files.bpcontent.cloud/2025/01/26/11/20250126114229-ZKA7EMCG.js"></script>
+
+    <script>
+        // Initialize Botpress Web Chat after both scripts have loaded
+        window.botpressWebChat.init({
+            hostUrl: 'https://cdn.botpress.cloud/webchat/v2.2',  // Host URL for Botpress
+            botId: 'ef5490c2-650f-46f9-9502-68a067d58b44',  // bot ID
+            clientId: '7dc361ae-cce2-4c3f-80af-2ff67aecc866'  // client ID
+        });
+    </script>
+    
+    
+</body>
+</html>
